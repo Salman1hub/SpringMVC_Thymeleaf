@@ -1,0 +1,11 @@
+ <!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Thymeleaf demo</title>
+        <link rel="styleshett" th:href="@{/css/demo.css}" />
+    </head>
+    <body>
+      <p th:text="'Hello World! The time is now ' + ${message}" class="funny"/>
+    </body>
+
+</html>

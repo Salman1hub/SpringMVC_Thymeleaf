@@ -1,0 +1,17 @@
+  
+  <!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org"> <!--to use thymeleaf we have to add this namespace -->
+    <head>
+        <title>HelloWorld_show form</title>
+      
+    </head>
+    <body>
+      <!--when submit your name ssend request to processformVTwo-->
+      <form th:action="@{/processformVThree}" method="post">
+        <input type="text" name="studentname" placeholder="Enter Your name?"/>
+          <input type="submit" value="Submit"/>
+      </form>
+    </body>
+    </html>
+
+ 
