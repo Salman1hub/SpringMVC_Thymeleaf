@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            background: linear-gradient(to bottom right, #e0f7fa, #fffde7); /* سماوي وليموني */
+        }
+        h2 {
+            text-align: center;
+            color: #00796b;
+            margin-bottom: 30px;
+        }
+        form {
+            width: 320px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+        input {
+            width: 100%;
+            margin: 12px 0;
+            padding: 10px;
+            border: 1px solid #b2dfdb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #cddc39; /* ليموني */
+            color: #004d40;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #dce775;
+        }
+        .error {
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Login</h2>
+
+<form th:action="@{/admin/processLogin}" method="post" th:object="${student}">
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+
+    <input type="text" th:field="*{username}" placeholder="Username" required />
+    <input type="password" th:field="*{password}" placeholder="Password" required />
+    <button type="submit">Login</button>
+</form>
+
+</body>
+</html>

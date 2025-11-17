@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            background: linear-gradient(to bottom right, #e0f7fa, #fffde7); /* سماوي وليموني */
+        }
+        h2 {
+            text-align: center;
+            color: #00796b; /* لون عنوان مناسب */
+            margin-bottom: 30px;
+        }
+        form {
+            width: 400px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+        input, select {
+            width: 100%;
+            margin: 12px 0;
+            padding: 10px;
+            border: 1px solid #b2dfdb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        label {
+            font-weight: bold;
+            color: #004d40;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #cddc39; /* ليموني */
+            color: #004d40;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #dce775; /* تدرج عند المرور */
+        }
+    </style>
+</head>
+<body>
+    <h2>Add New Student</h2>
+    <form th:action="@{/admin/save-student}" method="post" th:object="${student}">
+        <!-- حقل مخفي للـ ID -->
+        <input type="hidden" th:field="*{id}" />
+
+        <input type="text" th:field="*{firstName}" placeholder="First Name" required />
+        <input type="text" th:field="*{lastName}" placeholder="Last Name" required />
+        <input type="text" th:field="*{country}" placeholder="Country" />
+        <input type="number" th:field="*{age}" placeholder="Age" required min="6" max="20" />
+        <input type="text"
+       th:field="*{courseCode}"
+       placeholder="Course Code"
+       required
+       pattern="Ta[0-9]{4}"
+       title="Course Code must start with 'Ta' followed by 4 digits (e.g., Ta1234)" />
+        <input type="text" th:field="*{username}" placeholder="Username" required />
+        <input type="password" th:field="*{password}" placeholder="Password (leave empty to keep current)" />
+
+        <label>Roles (comma separated, e.g., ADMIN,USER):</label>
+        <input type="text" th:field="*{roles}" placeholder="Roles" />
+
+        <button type="submit">Save Student</button>
+    </form>
+</body>
+</html>

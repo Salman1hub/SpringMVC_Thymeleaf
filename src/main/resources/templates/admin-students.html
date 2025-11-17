@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #e0f7fa, #fffde7); /* سماوي وليموني */
+            padding: 40px;
+        }
+        h2 {
+            text-align: center;
+            color: #00796b;
+            margin-bottom: 30px;
+        }
+        .add-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            margin-bottom: 20px;
+            background-color: #cddc39; /* ليموني */
+            color: #004d40;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .add-btn:hover {
+            background-color: #dce775;
+        }
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #b2dfdb; /* سماوي فاتح */
+            color: #004d40;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fbe7; /* تدرج ليموني فاتح */
+        }
+        tr:hover {
+            background-color: #e0f2f1; /* سماوي فاتح عند المرور */
+        }
+        .action-link {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .update-link {
+            color: #004d40;
+            background-color: #b2dfdb;
+            margin-right: 5px;
+        }
+        .update-link:hover {
+            background-color: #80cbc4;
+            color: #ffffff;
+        }
+        .delete-link {
+            color: #ffffff;
+            background-color: #f44336;
+        }
+        .delete-link:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+
+<h2>All Students</h2>
+
+<div style="text-align:center;">
+    <a th:href="@{/admin/add-student}" class="add-btn">Add Employee</a>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Age</th>
+        <th>Course Code</th>
+        <th>Username</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${students}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.firstName + ' ' + s.lastName}"></td>
+        <td th:text="${s.country}"></td>
+        <td th:text="${s.age}"></td>
+        <td th:text="${s.courseCode}"></td>
+        <td th:text="${s.username}"></td>
+        <td>
+            <a th:href="@{/admin/update-student(id=${s.id})}" class="action-link update-link">Update</a>
+            <a th:href="@{/admin/delete-student(id=${s.id})}" class="action-link delete-link" 
+               onclick="return confirm('Are you sure you want to delete this student?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
